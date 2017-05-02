@@ -1,0 +1,758 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="IPV6,Nginx,域名," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="前言闲着无聊，想写点东西，忽然记起还有ipv6可以小小的折腾一下。不得不说，搬瓦工还是不错的，支持ipv6 校园网也是不错的，也支持ipv6  硬件条件已经具备，那么下一步开始正式实施了！ 配置Nginx ipv6监听这一步很简单，找到Nginx的配置文件,在/etc/nginx/conf.d/hexo.conf1listen 80; 后面，加入下面这行： 1listen [::]:80 ; 然后">
+<meta name="keywords" content="IPV6,Nginx,域名">
+<meta property="og:type" content="article">
+<meta property="og:title" content="为知北游开启IPV6访问">
+<meta property="og:url" content="http://yoursite.com/2016/05/15/enable-ipv6/index.html">
+<meta property="og:site_name" content="知北游">
+<meta property="og:description" content="前言闲着无聊，想写点东西，忽然记起还有ipv6可以小小的折腾一下。不得不说，搬瓦工还是不错的，支持ipv6 校园网也是不错的，也支持ipv6  硬件条件已经具备，那么下一步开始正式实施了！ 配置Nginx ipv6监听这一步很简单，找到Nginx的配置文件,在/etc/nginx/conf.d/hexo.conf1listen 80; 后面，加入下面这行： 1listen [::]:80 ; 然后">
+<meta property="og:image" content="http://7xq2ii.com1.z0.glb.clouddn.com/bwg-ipv6.png">
+<meta property="og:image" content="http://7xq2ii.com1.z0.glb.clouddn.com/image/school-ipv6.png">
+<meta property="og:image" content="http://7xq2ii.com1.z0.glb.clouddn.com/domain_parse_ipv6.png">
+<meta property="og:image" content="http://7xq2ii.com1.z0.glb.clouddn.com/ping_ipv4.png">
+<meta property="og:image" content="http://7xq2ii.com1.z0.glb.clouddn.com/image/ipv6_%E7%9F%A5%E5%8C%97%E6%B8%B8.png">
+<meta property="og:image" content="http://7xq2ii.com1.z0.glb.clouddn.com/image/ping-ipv6.png">
+<meta property="og:updated_time" content="2016-06-13T16:06:05.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="为知北游开启IPV6访问">
+<meta name="twitter:description" content="前言闲着无聊，想写点东西，忽然记起还有ipv6可以小小的折腾一下。不得不说，搬瓦工还是不错的，支持ipv6 校园网也是不错的，也支持ipv6  硬件条件已经具备，那么下一步开始正式实施了！ 配置Nginx ipv6监听这一步很简单，找到Nginx的配置文件,在/etc/nginx/conf.d/hexo.conf1listen 80; 后面，加入下面这行： 1listen [::]:80 ; 然后">
+<meta name="twitter:image" content="http://7xq2ii.com1.z0.glb.clouddn.com/bwg-ipv6.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/05/15/enable-ipv6/"/>
+
+
+
+
+
+  <title>为知北游开启IPV6访问 | 知北游</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">知北游</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">明见无值</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/05/15/enable-ipv6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Yu Mao">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="知北游">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                为知北游开启IPV6访问
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-05-15T00:00:00+08:00">
+                2016-05-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/博客构建/" itemprop="url" rel="index">
+                    <span itemprop="name">博客构建</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>闲着无聊，想写点东西，忽然记起还有ipv6可以小小的折腾一下。<br>不得不说，搬瓦工还是不错的，支持ipv6<br><img src="http://7xq2ii.com1.z0.glb.clouddn.com/bwg-ipv6.png" alt=""></p>
+<p>校园网也是不错的，也支持ipv6</p>
+<p><img src="http://7xq2ii.com1.z0.glb.clouddn.com/image/school-ipv6.png" alt=""></p>
+<p>硬件条件已经具备，那么下一步开始正式实施了！</p>
+<h2 id="配置Nginx-ipv6监听"><a href="#配置Nginx-ipv6监听" class="headerlink" title="配置Nginx ipv6监听"></a>配置Nginx ipv6监听</h2><p>这一步很简单，找到Nginx的配置文件,在<br>/etc/nginx/conf.d/hexo.conf<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">listen 80;</div></pre></td></tr></table></figure></p>
+<p>后面，加入下面这行：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">listen [::]:80 ;</div></pre></td></tr></table></figure>
+<p>然后重启Nginx，执行：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">nginx -s reload</div></pre></td></tr></table></figure>
+<p>OK,到这里工作已经完成一半了，接下来就是</p>
+<h2 id="域名解析"><a href="#域名解析" class="headerlink" title="域名解析"></a>域名解析</h2><p>域名是在万网买的，那么进入万网的域名解析管理界面<br>添加两条AAAA记录，记录值填写ipv6地址</p>
+<p><img src="http://7xq2ii.com1.z0.glb.clouddn.com/domain_parse_ipv6.png" alt=""></p>
+<p>该做的都做的了那么接下来测试一下</p>
+<h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><p>因为同时连接有ipv4和ipv6，但似乎默认优先访问ipv4<br>命令提示符中，执行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ping maoyu.org</div></pre></td></tr></table></figure>
+<p>得到下图，返回的是ipv4地址</p>
+<p><img src="http://7xq2ii.com1.z0.glb.clouddn.com/ping_ipv4.png" alt=""></p>
+<p>那么让我们断开ipv4<br>进入浏览器，访问maoyu.org,发现可以正常访问！</p>
+<p><img src="http://7xq2ii.com1.z0.glb.clouddn.com/image/ipv6_%E7%9F%A5%E5%8C%97%E6%B8%B8.png" alt=""></p>
+<p>再让我们用ping命令测试一下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ping maoyu.org</div></pre></td></tr></table></figure>
+<p>发现得到的是ipv6地址！<br><img src="http://7xq2ii.com1.z0.glb.clouddn.com/image/ping-ipv6.png" alt=""></p>
+<h2 id="结束"><a href="#结束" class="headerlink" title="结束"></a>结束</h2><p>只有32bit 的ipv4地址即将分配完毕，而128bit 的ipv6地址怎么用也用不完，人手一个也是九牛一毛，妥妥的。</p>
+<p>GL&amp;HF</p>
+<h2 id="END"><a href="#END" class="headerlink" title="END"></a>END</h2>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/IPV6/" rel="tag"># IPV6</a>
+          
+            <a href="/tags/Nginx/" rel="tag"># Nginx</a>
+          
+            <a href="/tags/域名/" rel="tag"># 域名</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/05/14/why-named-this/" rel="next" title="知北游">
+                <i class="fa fa-chevron-left"></i> 知北游
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/05/15/migrate-github-vps-Tech/" rel="prev" title="将知北游从Github迁移至VPS">
+                将知北游从Github迁移至VPS <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Yu Mao" />
+          <p class="site-author-name" itemprop="name">Yu Mao</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">26</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置Nginx-ipv6监听"><span class="nav-number">2.</span> <span class="nav-text">配置Nginx ipv6监听</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#域名解析"><span class="nav-number">3.</span> <span class="nav-text">域名解析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#测试"><span class="nav-number">4.</span> <span class="nav-text">测试</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结束"><span class="nav-number">5.</span> <span class="nav-text">结束</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#END"><span class="nav-number">6.</span> <span class="nav-text">END</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Yu Mao</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

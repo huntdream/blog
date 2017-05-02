@@ -1,0 +1,764 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Google,字体,360," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="起因这几天访问博客的时候发现网页加载速度很慢，特别慢，网页的基本框架已经加载好了，就是不显示内容，实在有点不堪忍受。起初以为是我这2Mbps校园网的锅，因为有时候访问其他网站也加载特别慢，但情况略微有所不同，那就是其他网站是什么也没有显示，标签页上的圈一个劲的自顾自的转圈。 不得不说一下，Chrome的市场份额在前段日子略超IE是有道理的。于是在博客主页右键Inspect检视网页，然后切到Netw">
+<meta name="keywords" content="Google,字体,360">
+<meta property="og:type" content="article">
+<meta property="og:title" content="更换谷歌字库节点">
+<meta property="og:url" content="http://yoursite.com/2016/05/16/change-google-font-source/index.html">
+<meta property="og:site_name" content="知北游">
+<meta property="og:description" content="起因这几天访问博客的时候发现网页加载速度很慢，特别慢，网页的基本框架已经加载好了，就是不显示内容，实在有点不堪忍受。起初以为是我这2Mbps校园网的锅，因为有时候访问其他网站也加载特别慢，但情况略微有所不同，那就是其他网站是什么也没有显示，标签页上的圈一个劲的自顾自的转圈。 不得不说一下，Chrome的市场份额在前段日子略超IE是有道理的。于是在博客主页右键Inspect检视网页，然后切到Netw">
+<meta property="og:image" content="http://7xq2ii.com1.z0.glb.clouddn.com/360_front.png">
+<meta property="og:updated_time" content="2016-06-12T04:35:03.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="更换谷歌字库节点">
+<meta name="twitter:description" content="起因这几天访问博客的时候发现网页加载速度很慢，特别慢，网页的基本框架已经加载好了，就是不显示内容，实在有点不堪忍受。起初以为是我这2Mbps校园网的锅，因为有时候访问其他网站也加载特别慢，但情况略微有所不同，那就是其他网站是什么也没有显示，标签页上的圈一个劲的自顾自的转圈。 不得不说一下，Chrome的市场份额在前段日子略超IE是有道理的。于是在博客主页右键Inspect检视网页，然后切到Netw">
+<meta name="twitter:image" content="http://7xq2ii.com1.z0.glb.clouddn.com/360_front.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/05/16/change-google-font-source/"/>
+
+
+
+
+
+  <title>更换谷歌字库节点 | 知北游</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">知北游</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">明见无值</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/05/16/change-google-font-source/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Yu Mao">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="知北游">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                更换谷歌字库节点
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-05-16T00:00:00+08:00">
+                2016-05-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/博客构建/" itemprop="url" rel="index">
+                    <span itemprop="name">博客构建</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h2><p>这几天访问博客的时候发现网页加载速度很慢，特别慢，网页的基本框架已经加载好了，就是不显示内容，实在有点不堪忍受。<br>起初以为是我这2Mbps校园网的锅，因为有时候访问其他网站也加载特别慢，但情况略微有所不同，那就是其他网站是什么也没有显示，标签页上的圈一个劲的自顾自的转圈。</p>
+<p>不得不说一下，Chrome的市场份额在前段日子略超IE是有道理的。于是在博客主页右键Inspect检视网页，然后切到Network选项，刷新网页，这一刷，果然，罪魁祸首昭然若揭!发现图标上有一条时间线从左边开始延伸往右边跑，撞到“墙”居然依旧我行我素，前行不辍，鼠标拖过去看一下URl,原来是在CSS里面引入的Google Fonts服务，没办法，又到了问候GFW的是时候了。<br>好吧，找个替代方案就OK了罢。</p>
+<h2 id="替代方案"><a href="#替代方案" class="headerlink" title="替代方案"></a>替代方案</h2><p>百度一下，这一百度居然挖出了”业界良心”——大数字</p>
+<p><img src="http://7xq2ii.com1.z0.glb.clouddn.com/360_front.png" alt=""></p>
+<p>看到类似的段子，总有一种莫名喜感，哈哈</p>
+<blockquote>
+<p>由于众所周知的原因……</p>
+</blockquote>
+<p>360这个代理干的还真是漂亮，好感度+1。</p>
+<h2 id="替换URL"><a href="#替换URL" class="headerlink" title="替换URL"></a>替换URL</h2><p>再看了一下NexT主题的Documentation，发现主题作者也考虑到了这个问题<br>在主题配置文件里添加了fonts选项可以自定义字体库，只是默认为:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">fonts.googleapis.com</div></pre></td></tr></table></figure>
+<p>那么在fonts下的host后面添加360前端提供代理地址</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">host: //fonts.useso.com</div></pre></td></tr></table></figure>
+<p>然后</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Crtl S</div></pre></td></tr></table></figure>
+<p>最后</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">hexo g</div><div class="line">hexo d</div></pre></td></tr></table></figure>
+<h2 id="Mission-Completed！"><a href="#Mission-Completed！" class="headerlink" title="Mission Completed！"></a>Mission Completed！</h2><p>说几句题外话，<br>在基于我个人利益的角度下看”由于众所周知的原因”中的这个“原因”，<br>我对这个“原因”是抵触、反对的，</p>
+<blockquote>
+<p>在高一的时候我终于有了自己电脑可以折腾的时候</p>
+<p>在”倒闭网站”已经基本全线无法访问的时候</p>
+<p>学习部署了GoAgent(由于作者”跑去喝茶”的原因，在Github项目主页上只有数以千/万计的感谢)</p>
+<p>随着可用IP越来越少，在GoAgent 基本GG，寻找替代方法的时候</p>
+<p>遇到了shadowscoks（简称ss）(好像作者也“跑去喝茶”了)</p>
+<p>再后来也有搭建了PPTP的VPN<br>……</p>
+</blockquote>
+<p>还是少说两句好点</p>
+<p>在”越过长城”的过程中，我真的学到了很多很多，在这一方面我或许是要感谢的</p>
+<p>在国家民族的整体利益(有待考证)下，<br>这个”原因”或许是需要存在的，<br>很难说清利与弊，这就尴尬了</p>
+<blockquote>
+<p>防民之口，甚于防川，川壅而溃，伤人必多，民亦如之。</p>
+<p>是故为川者，决之使导；为民者，宣之使言。</p>
+<p>《国语·周语上》</p>
+</blockquote>
+<p>作为一个学识浅薄的个体，我无法去判其对与错<br>只能说这绝非是长久之计</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Google/" rel="tag"># Google</a>
+          
+            <a href="/tags/字体/" rel="tag"># 字体</a>
+          
+            <a href="/tags/360/" rel="tag"># 360</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/05/15/migrate-github-vps/" rel="next" title="将知北游从Github迁移至VPS">
+                <i class="fa fa-chevron-left"></i> 将知北游从Github迁移至VPS
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/05/20/where-to-go/" rel="prev" title="NO NAME">
+                NO NAME <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Yu Mao" />
+          <p class="site-author-name" itemprop="name">Yu Mao</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">26</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#起因"><span class="nav-number">1.</span> <span class="nav-text">起因</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#替代方案"><span class="nav-number">2.</span> <span class="nav-text">替代方案</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#替换URL"><span class="nav-number">3.</span> <span class="nav-text">替换URL</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Mission-Completed！"><span class="nav-number">4.</span> <span class="nav-text">Mission Completed！</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Yu Mao</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
